@@ -56,7 +56,7 @@ const PORT = ENV?.NODE_PORT ?? 3001;
 
 server.listen(ENV.NODE_PORT, () =>
   console.log(`Servidor corriendo en el puerto ${ENV.NODE_PORT}`)
-
+);
 
 const inventoryCheckerService = new InventoryCheckerService(
   new PrismaClient(),
