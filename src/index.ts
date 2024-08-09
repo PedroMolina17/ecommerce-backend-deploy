@@ -38,6 +38,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 const server = http.createServer(app);
+
 export const io = new SocketServer(server, {
   cors: {
     origin: ENV.URL_FRONTEND,
@@ -52,8 +53,10 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(ENV.NODE_PORT, () =>
-  console.log(`Servidor corriendo en el puerto ${ENV.NODE_PORT}`)
+const port = parseInt(ENV.PORT as string, 10) || 3001;
+
+server.listen(port, "0.0.0.0", () =>
+  console.log(`Servidor corriendo en el puerto ${port}`)
 );
 
 const inventoryCheckerService = new InventoryCheckerService(
